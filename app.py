@@ -82,7 +82,7 @@ Aplicación multimodal para el acompañamiento emocional
 en momentos de ansiedad.
 """)
 
-st.image("logo.png", width=300)
+st.image("Logo.png", width=300)
 
 st.markdown("---")
 
