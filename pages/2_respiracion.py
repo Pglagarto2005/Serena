@@ -80,32 +80,42 @@ header {
 
     text-align:center;
     color:#F6E6B4;
-    font-size:34px;
+    font-size:42px;
     margin-top:40px;
     font-weight:bold;
-
-    animation: fade 8s infinite;
 }
 
-@keyframes fade {
+/* TEXTO DINÁMICO */
+
+.instruccion span::before {
+
+    content: "INHALA";
+
+    animation: breathingText 8s infinite;
+}
+
+@keyframes breathingText {
 
     0% {
-        opacity:0;
+        content: "Inhala";
+        opacity: 1;
     }
 
-    25% {
-        opacity:1;
+    49% {
+        content: "Inhala";
+        opacity: 1;
     }
 
     50% {
-        opacity:1;
+        content: "Exhala";
+        opacity: 1;
     }
 
     100% {
-        opacity:0;
+        content: "Exhala";
+        opacity: 1;
     }
 }
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -121,7 +131,7 @@ st.markdown("""
 
 st.markdown("""
 <div class="instruccion">
-Inhala... Exhala...
+    <span>Inhala... Exhala...
 </div>
 """, unsafe_allow_html=True)
 
