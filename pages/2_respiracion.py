@@ -54,6 +54,7 @@ header {
 h1 {
     color: white;
     font-size: 72px !important;
+    margin-top: 60px;
 }
 
 p {
@@ -97,7 +98,7 @@ div.stButton > button:hover {
     align-items:center;
 
     width:100%;
-    height:100%;
+    height:80vh;
 }
 
 .circle {
@@ -174,8 +175,6 @@ div.stButton > button:hover {
 
 col1, col2 = st.columns([1,1])
 
-# ===== CÍRCULO =====
-
 # ===== TEXTO =====
 
 with col1:
@@ -200,12 +199,8 @@ with col1:
 
         st.success("Sigue el ritmo de tu respiración.")
 
-# ===== TEXTO =====
+# ===== CÍRCULO =====
 
-with col2:
-
-    if st.session_state.ejercicio:
-        
 with col2:
 
     if st.session_state.ejercicio:
@@ -230,6 +225,3 @@ with col2:
             </div>
         </div>
         """, unsafe_allow_html=True)
-
-
-        st.success("Sigue el ritmo de tu respiración.")
