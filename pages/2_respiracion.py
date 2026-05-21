@@ -16,16 +16,20 @@ st.markdown("""
     color: white;
 }
 
-h1 {
-    color: white;
-    text-align:center;
-    font-size:60px !important;
+/* SIDEBAR */
+
+[data-testid="stSidebar"] {
+    background-color: #2B0A57;
 }
 
-p {
-    color:white;
-    text-align:center;
-    font-size:22px;
+[data-testid="stSidebar"] * {
+    color: white;
+}
+
+/* HEADER */
+
+[data-testid="stHeader"] {
+    background: transparent;
 }
 
 #MainMenu {
@@ -38,6 +42,21 @@ footer {
 
 header {
     visibility:hidden;
+}
+
+/* TÍTULOS */
+
+h1 {
+    color: white;
+    text-align:center;
+    font-size:70px !important;
+    margin-top: 20px;
+}
+
+p {
+    color:white;
+    text-align:center;
+    font-size:24px;
 }
 
 /* CÍRCULO */
@@ -56,7 +75,8 @@ header {
 
     box-shadow:
     0 0 40px #ff5e8a,
-    0 0 80px #ff5e8a;
+    0 0 80px #ff5e8a,
+    0 0 120px rgba(255, 94, 138, 0.5);
 
     animation: breathe 8s infinite ease-in-out;
 }
@@ -76,14 +96,16 @@ header {
     }
 }
 
+/* TEXTO RESPIRACIÓN */
+
 .instruccion {
 
     text-align:center;
     color:#F6E6B4;
-    font-size:42px;
+    font-size:48px;
     margin-top:40px;
     font-weight:bold;
-    line-height: 1.8;
+    letter-spacing: 2px;
 
     animation: pulseText 8s infinite;
 }
@@ -91,20 +113,51 @@ header {
 @keyframes pulseText {
 
     0% {
-        opacity:0.5;
-        transform: scale(0.9);
+        opacity:0.4;
+        transform: scale(0.95);
     }
 
     50% {
         opacity:1;
-        transform: scale(1.1);
+        transform: scale(1.08);
     }
 
     100% {
-        opacity:0.5;
-        transform: scale(0.9);
+        opacity:0.4;
+        transform: scale(0.95);
     }
 }
+
+/* BOTÓN */
+
+div.stButton > button {
+
+    background-color:#FF5E8A;
+    color:white;
+
+    border:none;
+    border-radius:25px;
+
+    padding:16px 40px;
+
+    font-size:22px;
+    font-weight:bold;
+
+    display:block;
+    margin:auto;
+
+    transition:0.3s;
+
+    box-shadow: 0 0 20px rgba(255, 94, 138, 0.4);
+}
+
+div.stButton > button:hover {
+
+    background-color:#ff7ca2;
+
+    transform:scale(1.05);
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -120,7 +173,7 @@ st.markdown("""
 
 st.markdown("""
 <div class="instruccion">
-Inhala<br>Exhala
+INHALA • EXHALA
 </div>
 """, unsafe_allow_html=True)
 
