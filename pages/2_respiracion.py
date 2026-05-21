@@ -3,8 +3,13 @@ import streamlit as st
 st.set_page_config(
     page_title="Respira | Serena",
     page_icon="Logo.png",
-    layout="centered"
+    layout="wide"
 )
+
+# ===== ESTADO =====
+
+if "ejercicio" not in st.session_state:
+    st.session_state.ejercicio = False
 
 # ===== ESTILOS =====
 
@@ -19,7 +24,7 @@ st.markdown("""
 /* SIDEBAR */
 
 [data-testid="stSidebar"] {
-    background-color: #220046;
+    background-color: #2B0A57;
 }
 
 [data-testid="stSidebar"] * {
@@ -48,38 +53,78 @@ header {
 
 h1 {
     color: white;
-    text-align:center;
-    font-size:70px !important;
-    margin-top: 20px;
+    font-size: 72px !important;
 }
 
 p {
     color:white;
-    text-align:center;
     font-size:24px;
+}
+
+/* BOTÓN */
+
+div.stButton > button {
+
+    background-color:#FF5E8A;
+    color:white;
+
+    border:none;
+    border-radius:25px;
+
+    padding:18px 40px;
+
+    font-size:22px;
+    font-weight:bold;
+
+    transition:0.3s;
+
+    box-shadow: 0 0 20px rgba(255, 94, 138, 0.4);
+}
+
+div.stButton > button:hover {
+
+    background-color:#ff7ca2;
+
+    transform:scale(1.05);
 }
 
 /* CÍRCULO */
 
+.circle-container {
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:100%;
+    height:100%;
+}
+
 .circle {
 
-    width: 320px;
-    height: 320px;
+    width: 260px;
+    height: 260px;
 
     border-radius: 50%;
-
-    margin: auto;
-    margin-top: 60px;
 
     background: radial-gradient(circle, #ff7ca2, #ff5e8a);
 
     box-shadow:
-    0 0 40px #ff5e8a,
-    0 0 80px #ff5e8a,
-    0 0 120px rgba(255, 94, 138, 0.5);
+    0 0 30px rgba(255, 94, 138, 0.5),
+    0 0 60px rgba(255, 94, 138, 0.3);
 
     animation: breathe 8s infinite ease-in-out;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:#F6E6B4;
+    font-size:38px;
+    font-weight:bold;
 }
+
+/* ANIMACIÓN */
 
 @keyframes breathe {
 
@@ -96,66 +141,30 @@ p {
     }
 }
 
-/* TEXTO RESPIRACIÓN */
+.circle::after {
 
-.instruccion {
+    content: "INHALA";
 
-    text-align:center;
-    color:#F6E6B4;
-    font-size:48px;
-    margin-top:40px;
-    font-weight:bold;
-    letter-spacing: 2px;
-
-    animation: pulseText 8s infinite;
+    animation: breathingText 8s infinite;
 }
 
-@keyframes pulseText {
+@keyframes breathingText {
 
     0% {
-        opacity:0.4;
-        transform: scale(0.95);
+        content: "INHALA";
+    }
+
+    49% {
+        content: "INHALA";
     }
 
     50% {
-        opacity:1;
-        transform: scale(1.08);
+        content: "EXHALA";
     }
 
     100% {
-        opacity:0.4;
-        transform: scale(0.95);
+        content: "EXHALA";
     }
-}
-
-/* BOTÓN */
-
-div.stButton > button {
-
-    background-color:#FF5E8A;
-    color:white;
-
-    border:none;
-    border-radius:25px;
-
-    padding:16px 40px;
-
-    font-size:22px;
-    font-weight:bold;
-
-    display:block;
-    margin:auto;
-
-    transition:0.3s;
-
-    box-shadow: 0 0 20px rgba(255, 94, 138, 0.4);
-}
-
-div.stButton > button:hover {
-
-    background-color:#ff7ca2;
-
-    transform:scale(1.05);
 }
 
 </style>
@@ -163,20 +172,36 @@ div.stButton > button:hover {
 
 # ===== CONTENIDO =====
 
-st.title("Respira conmigo")
+col1, col2 = st.columns([1,1])
 
-st.write("No necesitas resolver todo ahora.")
+# ===== CÍRCULO =====
 
-st.markdown("""
-<div class="circle"></div>
-""", unsafe_allow_html=True)
+with col1:
 
-st.markdown("""
-<div class="instruccion">
-INHALA • EXHALA
-</div>
-""", unsafe_allow_html=True)
+    if st.session_state.ejercicio:
 
-st.markdown("<br><br>", unsafe_allow_html=True)
+        st.markdown("""
+        <div class="circle-container">
+            <div class="circle"></div>
+        </div>
+        """, unsafe_allow_html=True)
 
-st.button("Comenzar ejercicio")
+# ===== TEXTO =====
+
+with col2:
+
+    st.title("Respira conmigo")
+
+    st.write("No necesitas resolver todo ahora.")
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    if not st.session_state.ejercicio:
+
+        if st.button("Comenzar ejercicio"):
+            st.session_state.ejercicio = True
+            st.rerun()
+
+    else:
+
+        st.success("Sigue el ritmo de tu respiración.")
