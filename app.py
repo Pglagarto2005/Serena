@@ -73,25 +73,73 @@ header {
 
 # ===== CONTENIDO =====
 
-st.title("SERENA")
+# ===== HERO SECTION =====
 
-st.subheader("No estás sola.")
+col1, col2 = st.columns([1,1])
 
-st.write("""
-Aplicación multimodal para el acompañamiento emocional
-en momentos de ansiedad.
-""")
+with col1:
 
-st.image("Logo.png", width=300)
+    st.title("SERENA")
+
+    st.subheader("No estás sola.")
+
+    st.write("""
+    Aplicación multimodal para el acompañamiento emocional
+    en momentos de ansiedad.
+    """)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    st.button("Comenzar")
+
+with col2:
+
+    st.image("Logo.png", width=400)
 
 st.markdown("---")
 
-st.write("""
-SERENA utiliza:
-- Respiración guiada
-- Interacción visual
-- Sonidos relajantes
-- Apoyo emocional inmediato
-""")
+# ===== TARJETAS =====
 
-st.button("Comenzar")
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown("""
+    <div style="
+        background-color:#3D1366;
+        padding:20px;
+        border-radius:20px;
+        text-align:center;
+        height:220px;
+    ">
+        <h3 style="color:#F6E6B4;">Respiración</h3>
+        <p>Ejercicios guiados para ayudarte a recuperar la calma.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div style="
+        background-color:#3D1366;
+        padding:20px;
+        border-radius:20px;
+        text-align:center;
+        height:220px;
+    ">
+        <h3 style="color:#F6E6B4;">Audio</h3>
+        <p>Sonidos relajantes y acompañamiento emocional.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col3:
+    st.markdown("""
+    <div style="
+        background-color:#3D1366;
+        padding:20px;
+        border-radius:20px;
+        text-align:center;
+        height:220px;
+    ">
+        <h3 style="color:#F6E6B4;">Apoyo</h3>
+        <p>Interacciones simples para momentos difíciles.</p>
+    </div>
+    """, unsafe_allow_html=True)
