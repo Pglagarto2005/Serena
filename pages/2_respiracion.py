@@ -200,7 +200,7 @@ with col1:
 
         st.success("Sigue el ritmo de tu respiración.")
 
-# ===== CÍRCULO =====
+# ===== TEXTO =====
 
 with col2:
 
@@ -222,22 +222,5 @@ with col2:
         </div>
         """, unsafe_allow_html=True)
 
-# ===== TEXTO =====
-
-with col2:
-
-    st.title("Respira conmigo")
-
-    st.write("No necesitas resolver todo ahora.")
-
-    st.markdown("<br><br>", unsafe_allow_html=True)
-
-    if not st.session_state.ejercicio:
-
-        if st.button("Comenzar ejercicio"):
-            st.session_state.ejercicio = True
-            st.rerun()
-
-    else:
 
         st.success("Sigue el ritmo de tu respiración.")
