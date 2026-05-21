@@ -53,9 +53,23 @@ div.stButton > button:hover {
 
 st.title("¿Cómo te sientes hoy?")
 
-st.write("Estoy aquí contigo.")
+st.markdown("""
+<div style="
+text-align:center;
+font-size:24px;
+margin-bottom:40px;
+">
+Estoy aquí contigo.
+</div>
+""", unsafe_allow_html=True)
+
+# ===== IMAGEN =====
+
+st.image("Logo.png", width=280)
 
 st.markdown("<br>", unsafe_allow_html=True)
+
+# ===== BOTONES =====
 
 col1, col2 = st.columns(2)
 
@@ -77,13 +91,12 @@ with col2:
 
 st.markdown("<br><br>", unsafe_allow_html=True)
 
-st.image("Logo.png", width=350)
-
 st.markdown("""
 <div style="
 text-align:center;
-font-size:22px;
+font-size:28px;
 color:#F6E6B4;
+font-weight:bold;
 ">
 No estás sola.
 </div>
