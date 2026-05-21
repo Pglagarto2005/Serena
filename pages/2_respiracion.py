@@ -1,4 +1,5 @@
 import streamlit as st
+import base64
 
 st.set_page_config(
     page_title="Respira | Serena",
@@ -10,6 +11,23 @@ st.set_page_config(
 
 if "ejercicio" not in st.session_state:
     st.session_state.ejercicio = False
+
+# ===== FUNCIÓN AUDIO =====
+
+def autoplay_audio(file_path):
+
+    with open(file_path, "rb") as f:
+        data = f.read()
+
+    b64 = base64.b64encode(data).decode()
+
+    md = f"""
+    <audio autoplay loop id="audio">
+        <source src="data:audio/mp3;base64,{b64}" type="audio/mp3">
+    </audio>
+    """
+
+    st.markdown(md, unsafe_allow_html=True)
 
 # ===== ESTILOS =====
 
@@ -205,10 +223,7 @@ with col2:
 
     if st.session_state.ejercicio:
 
-        audio_file = open("relax.mp3", "rb")
-        audio_bytes = audio_file.read()
-
-        st.audio(audio_bytes, format="audio/mp3")
+        autoplay_audio("relax.mp3")
 
         st.markdown("""
         <div class="circle-container">
