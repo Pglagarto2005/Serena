@@ -205,6 +205,15 @@ with col1:
 with col2:
 
     if st.session_state.ejercicio:
+        
+with col2:
+
+    if st.session_state.ejercicio:
+
+        audio_file = open("relax.mp3", "rb")
+        audio_bytes = audio_file.read()
+
+        st.audio(audio_bytes, format="audio/mp3")
 
         st.markdown("""
         <div class="circle-container">
