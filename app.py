@@ -10,13 +10,17 @@ st.set_page_config(
 
 # ===== MQTT CONFIG =====
 MQTT_BROKER = "broker.hivemq.com"
-MQTT_PORT = 1883
-MQTT_TOPIC = "serena/calma"
+MQTT_PORT   = 1883
+MQTT_TOPIC  = "serena/calma"
 
 def publicar_mqtt(mensaje):
-    """Publica un mensaje MQTT al broker."""
+    """Publica un mensaje MQTT al broker usando paho v2."""
     try:
-        client = mqtt.Client(client_id=f"SerenaApp_{int(time.time())}")
+        client_id = f"SerenaApp_{int(time.time())}"
+        client = mqtt.Client(
+            mqtt.CallbackAPIVersion.VERSION2,
+            client_id=client_id
+        )
         client.connect(MQTT_BROKER, MQTT_PORT, keepalive=10)
         client.loop_start()
         result = client.publish(MQTT_TOPIC, mensaje, qos=1)
@@ -119,7 +123,6 @@ with col1:
                 st.rerun()
 
 with col2:
-    # Si no tienes Logo.png, muestra un emoji grande
     st.markdown("""
     <div style="
         display:flex;
@@ -177,10 +180,10 @@ with col3:
     </div>
     """, unsafe_allow_html=True)
 
-# ===== INFO MQTT (debug) =====
+# ===== DEBUG =====
 with st.expander("🔧 Estado de conexión"):
     st.code(f"""
-Broker: {MQTT_BROKER}:{MQTT_PORT}
-Topic:  {MQTT_TOPIC}
-Estado: {"🟢 Activo" if st.session_state.activo else "⚫ Inactivo"}
+Broker : {MQTT_BROKER}:{MQTT_PORT}
+Topic  : {MQTT_TOPIC}
+Estado : {"🟢 Activo" if st.session_state.activo else "⚫ Inactivo"}
 """)
